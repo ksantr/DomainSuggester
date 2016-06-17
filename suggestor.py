@@ -24,8 +24,6 @@ class Domainer:
     def parse_cl(self):
         """Parse commands from the command line"""
         parser = ArgumentParser(description='Domain names generator')
-        parser.add_argument('-g', '--gen', action='store_true',
-                            help='Generate domains')
         parser.add_argument('-l', '--length', metavar='Length', type=int,
                             default=0, help='Max domain length with zone')
         parser.add_argument('-k', '--keyword', metavar='Keyword', type=str,
@@ -46,7 +44,7 @@ class Domainer:
         parser = self.parse_cl()
         args = parser.parse_args()
 
-        if args.gen and args.file:
+        if args.file:
             domains = []
             for keyword in open(args.file):
                 # Gen domains
@@ -58,7 +56,7 @@ class Domainer:
                 with open(args.output, 'w+') as f:
                     f.write('\n'.join(domains))
 
-        elif args.gen and args.keyword:
+        elif args.keyword:
             # Gen domains
             domains = self.gen_domains(args.keyword,
                     args.ngrams, args.zone, args.length, sort=True)
