@@ -58,9 +58,9 @@ class Domainer:
                 with open(args.output, 'w+') as f:
                     f.write('\n'.join(domains))
 
-        elif args.gen and args.input:
+        elif args.gen and args.keyword:
             # Gen domains
-            domains = self.gen_domains(args.input,
+            domains = self.gen_domains(args.keyword,
                     args.ngrams, args.zone, args.length, sort=True)
             logging.info(domains)
             # Save to file
