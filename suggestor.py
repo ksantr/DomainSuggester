@@ -14,7 +14,7 @@ logging.basicConfig(format='%(message)s', level=logging.INFO)
 
 class Domainer:
     """
-    Domain names generator.
+    Domain names generator
     """
 
     def __init__(self):
@@ -22,20 +22,20 @@ class Domainer:
         self.local_domains = 'domains/'
 
     def parse_cl(self):
-        """Parse commands from command line"""
+        """Parse commands from the command line"""
         parser = ArgumentParser(description='Domain names generator')
         parser.add_argument('-g', '--gen', action='store_true',
                             help='Generate domains')
         parser.add_argument('-l', '--length', metavar='Length', type=int,
                             default=0, help='Max domain length with zone')
-        parser.add_argument('-i', '--input', metavar='Input', type=str,
-                            help='Input data: "word1 word2" or "site.com"')
+        parser.add_argument('-k', '--keyword', metavar='Keyword', type=str,
+                            help='Input data: "word1 word2"')
         parser.add_argument('-n', '--ngrams', metavar='Grams', type=int, default=0,
                             help='Ngram length')
         parser.add_argument('-o', '--output', metavar='Writefile', default=False,
-                            help='Output filename for generated domains')
+                            help='Output file')
         parser.add_argument('-f', '--file', metavar='Filename', default=False,
-                            help='Read input data from the filename')
+                            help='Read input data from the file')
         parser.add_argument('-z', '--zone', metavar='Zone', default='com',
                             help='Domain zones separated with comma')
         return parser
