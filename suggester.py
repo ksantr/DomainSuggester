@@ -7,12 +7,11 @@ from copy import copy
 from glob import glob
 from nltk.util import ngrams
 from nltk.metrics.distance import edit_distance
-from ConfigParser import SafeConfigParser
 
 logging.basicConfig(format='%(message)s', level=logging.INFO)
 
 
-class Domainer:
+class DomainSuggester:
     """
     Domain names generator
     """
@@ -114,7 +113,7 @@ class Domainer:
             return
 
         if sort and grams_length:
-            domains = self.levsort(keyword, set(domains))
+            domains = self.levenshtein_sort(keyword, set(domains))
 
         get_str = lambda domain: re.sub('([.][a-z]{2,4})+$', '', domain)
         names = map(get_str, domains)
@@ -125,7 +124,7 @@ class Domainer:
                 domains.append('{0}.{1}'.format(name, zone))
         return domains
 
-    def levsort(self, keyword, domains):
+    def levenshtein_sort(self, keyword, domains):
         """
         Sort domains by Levenshtein edit-distance
 
@@ -153,5 +152,5 @@ class Domainer:
         return domains
 
 if __name__ == '__main__':
-    domainer = Domainer()
-    domainer.cli_process()
+    suggester = DomainSuggester()
+    suggester.cli_process()
