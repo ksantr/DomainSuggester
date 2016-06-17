@@ -1,4 +1,4 @@
-# DomainSuggestor
+# DomainSuggester
 Smart tool for generating domain names from keywords
 
 ## Usage example
